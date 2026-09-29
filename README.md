@@ -2,6 +2,7 @@ CardioLens
 
 CardioLens is an Explainable AI (XAI) powered Heart Disease Prediction System that leverages Machine Learning to assess the risk of heart disease using patient clinical data. The platform combines predictive analytics, explainability, and healthcare-focused visualization to deliver transparent and interpretable AI-driven insights.
 
+Project Demo: https://drive.google.com/file/d/1emZyZLtH__-PdRqMye3WNQwa-3d-b5n9/view?usp=sharing
 ---
 
 🚀 Features
