@@ -5,8 +5,14 @@ from pymongo import DESCENDING
 from api.auth import (
     authenticate_user,
     create_access_token,
-    create_user,
     get_current_user,
+    resend_verification,
+    reset_password,
+    start_password_reset,
+    start_signup,
+    verify_email,
+    verify_email_link,
+    verify_reset_code,
 )
 from api.database import (
     assessments_collection,
@@ -15,11 +21,16 @@ from api.database import (
 from api.predictor import predict_heart_disease
 from api.schemas import (
     AuthResponse,
+    EmailRequest,
     LoginRequest,
+    MessageResponse,
     PatientData,
     PredictionResponse,
+    ResetPasswordRequest,
     SignupRequest,
     UserResponse,
+    VerifyCodeRequest,
+    VerifyLinkRequest,
 )
 
 
@@ -64,23 +75,72 @@ def health():
 
 @app.post(
     "/auth/signup",
-    response_model=AuthResponse,
+    response_model=MessageResponse,
 )
 def signup(data: SignupRequest):
-
-    user = create_user(
+    return start_signup(
         name=data.name,
         email=data.email,
         password=data.password,
     )
 
-    token = create_access_token(user["id"])
 
-    return {
-        "access_token": token,
-        "token_type": "bearer",
-        "user": user,
-    }
+@app.post(
+    "/auth/verify-email",
+    response_model=AuthResponse,
+)
+def confirm_email(data: VerifyCodeRequest):
+    return verify_email(
+        email=data.email,
+        code=data.code,
+    )
+
+
+@app.post(
+    "/auth/verify-email-link",
+    response_model=AuthResponse,
+)
+def confirm_email_link(data: VerifyLinkRequest):
+    return verify_email_link(token=data.token)
+
+
+@app.post(
+    "/auth/resend-verification",
+    response_model=MessageResponse,
+)
+def resend_email_verification(data: EmailRequest):
+    return resend_verification(email=data.email)
+
+
+@app.post(
+    "/auth/forgot-password",
+    response_model=MessageResponse,
+)
+def forgot_password(data: EmailRequest):
+    return start_password_reset(email=data.email)
+
+
+@app.post(
+    "/auth/verify-reset-code",
+    response_model=MessageResponse,
+)
+def confirm_reset_code(data: VerifyCodeRequest):
+    return verify_reset_code(
+        email=data.email,
+        code=data.code,
+    )
+
+
+@app.post(
+    "/auth/reset-password",
+    response_model=MessageResponse,
+)
+def update_password(data: ResetPasswordRequest):
+    return reset_password(
+        email=data.email,
+        code=data.code,
+        password=data.password,
+    )
 
 
 @app.post(

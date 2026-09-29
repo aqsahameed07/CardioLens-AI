@@ -40,6 +40,30 @@ class LoginRequest(BaseModel):
     password: str
 
 
+class EmailRequest(BaseModel):
+    email: EmailStr
+
+
+class VerifyCodeRequest(BaseModel):
+    email: EmailStr
+    code: str = Field(..., min_length=6, max_length=6, pattern=r"^\d{6}$")
+
+
+class VerifyLinkRequest(BaseModel):
+    token: str = Field(..., min_length=20, max_length=200)
+
+
+class ResetPasswordRequest(BaseModel):
+    email: EmailStr
+    code: str = Field(..., min_length=6, max_length=6, pattern=r"^\d{6}$")
+    password: str = Field(..., min_length=6, max_length=100)
+
+
+class MessageResponse(BaseModel):
+    message: str
+    email: str
+
+
 class UserResponse(BaseModel):
     id: str
     name: str
