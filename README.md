@@ -58,6 +58,9 @@ The model is trained on a Heart Disease Dataset containing 13 clinical features:
 * Number of Major Vessels (ca)
 * Thalassemia (thal)
 
+  Dataset Link:
+  https://www.kaggle.com/datasets/aavigan/cleveland-clinic-heart-disease-dataset
+
 ### Best Model: Tuned Random Forest
 
 Multiple machine learning models were trained and evaluated, including:
