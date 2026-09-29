@@ -1,0 +1,7 @@
+Model,Accuracy,ROC-AUC,Precision,Recall,F1
+Tuned RF (best),0.836,0.911,0.78,0.97,0.865
+Random Forest,0.82,0.906,0.775,0.939,0.849
+KNN,0.82,0.884,0.789,0.909,0.845
+SVM,0.82,0.883,0.775,0.939,0.849
+XGBoost,0.787,0.871,0.75,0.909,0.822
+Logistic Regression,0.803,0.869,0.769,0.909,0.833

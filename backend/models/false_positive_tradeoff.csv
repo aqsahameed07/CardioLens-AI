@@ -1,0 +1,5 @@
+Configuration,Accuracy,ROC-AUC,Sensitivity,Specificity,False Positives,False Negatives
+RF balanced (t=0.50)  ← current,0.836,0.911,0.97,0.679,9,1
+RF balanced (t=0.60),0.82,0.911,0.848,0.786,6,5
+RF balanced (t=0.70),0.754,0.911,0.636,0.893,3,12
+RF without class_weight,0.836,0.906,0.97,0.679,9,1
