@@ -234,6 +234,7 @@ def get_assessments(
                 "probability": assessment["probability"],
                 "result": assessment["result"],
                 "model": assessment["model"],
+                "explanation": assessment.get("explanation", []),
                 "created_at": assessment["created_at"],
             }
         )
@@ -277,5 +278,6 @@ def get_assessment(
         "probability": assessment["probability"],
         "result": assessment["result"],
         "model": assessment["model"],
+        "explanation": assessment.get("explanation", []),
         "created_at": assessment["created_at"],
     }
